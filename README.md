@@ -75,7 +75,8 @@ python airbag_analysis.py --video_path path_to_your_video.mp4
 
 
 
-![image alt](https://github.com/user-attachments/assets/a99a6e76-c9ec-44c5-adfe-67c53a9d0cfc)
-![image_alt](https://github.com/user-attachments/assets/c43e1803-d642-43da-8865-c0ca841a9cd8)
+![image](https://github.com/user-attachments/assets/e018ae32-a346-48df-b3cd-8457d5501591)
+![image](https://github.com/user-attachments/assets/799ac180-a1da-400a-969e-a62fcc13cade)
+![image](https://github.com/user-attachments/assets/37b6d37f-3bb9-4ded-9647-f511a27972b2)
 
 
