@@ -1,71 +1,77 @@
-# Airbag Detection Using Detectron2
+# 🚗 Airbag Deployment Analysis using Detectron2
 
-## 📌 Project Overview
-This project utilizes **Detectron2**, a deep learning framework by Facebook AI, to detect airbags in **side-view vehicle videos**. It includes:
-- **Model Training**: Training a Mask R-CNN model on a COCO-formatted dataset.
-- **Inference & Segmentation**: Detecting airbags in video frames.
-- **Annotation Generation**: Creating text-based annotations for detected objects.
+## 📌 Overview
+This project utilizes **Detectron2** for airbag deployment analysis in side-view car crash videos. It performs **image segmentation** to extract crucial frames that help analyze airbag behavior, specifically:
 
-## 🚀 Features
-- **Dataset Handling**: Uses **Roboflow API** to load and split COCO dataset.
-- **Frame Extraction**: Extracts frames from input videos.
-- **Instance Segmentation**: Uses a trained **Mask R-CNN** model to detect airbags.
-- **Visualization**: Draws bounding boxes and masks over detected airbags.
-- **Annotation Generation**: Saves detected airbag coordinates into text files.
-- **Output Management**: Saves results and compresses them into a zip file for easy sharing.
+- **Stitch Opening Frame** 🧵➡️ First moment the airbag starts deploying.
+- **Maximum Inflation Frame** 🎈📈 Frame where the airbag reaches full inflation.
+- **Shoulder Line Frame** 🏋️‍♂️📏 Frame where the airbag crosses the driver's shoulder line.
 
-## 📂 Project Structure
-```
-📁 Airbag-Detection
-├── 📄 training.py            # Training the model with Detectron2
-├── 📄 inference.py           # Running inference and generating annotations
-├── 📁 datasets               # Contains dataset downloaded via Roboflow
-├── 📁 Output_frames          # Extracted video frames
-├── 📁 Result                 # Processed images with segmentation
-├── 📁 annotations_text       # Generated annotations for detected objects
-├── 📄 README.md              # Project documentation
-```
+## 🛠️ Technologies Used
+- **Python** 🐍
+- **Detectron2** 🧠
+- **OpenCV** 🎥
+- **COCO Dataset Format** 📊
+- **Roboflow** 🤖
 
-## 📌 Installation & Setup
-### 🔹 Step 1: Clone the repository
-```sh
-git clone https://github.com/your-username/airbag-detection.git
+---
+
+## 🚀 Problem Statements & Solutions
+
+### 1️⃣ Stitch Opening Frame 🧵➡️
+**Objective:** Identify the first frame where the airbag begins to emerge from the stitched panel.
+
+**Logic Used:**
+- Detect airbag segmentation mask across all frames.
+- Find the first frame where the pixel area of the detected mask exceeds a predefined threshold.
+
+### 2️⃣ Maximum Inflation Frame 🎈📈
+**Objective:** Identify the frame where the airbag is fully inflated.
+
+**Logic Used:**
+- Track the area of the segmented airbag in each frame.
+- The frame with the largest detected area is considered the maximum inflation frame.
+
+### 3️⃣ Shoulder Line Frame 🏋️‍♂️📏
+**Objective:** Detect the frame where the airbag crosses a driver’s shoulder level.
+
+**Logic Used:**
+- Define a **fixed horizontal line** at shoulder level based on prior calibration.
+- Identify the first frame where the airbag mask overlaps this predefined line.
+
+---
+
+## 🔧 Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/airbag-detection.git
 cd airbag-detection
-```
-### 🔹 Step 2: Install dependencies
-```sh
+
+# Install dependencies
 pip install -r requirements.txt
 ```
-**OR** install the necessary libraries manually:
-```sh
-pip install torch torchvision torchaudio
-pip install detectron2 roboflow opencv-python numpy
-```
-### 🔹 Step 3: Set up the dataset
-- **Roboflow API Key:** Update `training.py` with your API key to download the dataset.
 
-### 🔹 Step 4: Run the model
-**Train the model**:
-```sh
-python training.py
-```
-**Run inference & generate annotations**:
-```sh
-python inference.py
+---
+
+## 📌 Usage
+```python
+# Run airbag detection on a video
+python airbag_analysis.py --video_path path_to_your_video.mp4
 ```
 
-## 📊 Results
-- Extracted frames are stored in `Output_frames/`
-- Processed images with segmentation are stored in `Result/`
-- Annotation text files are stored in `annotations_text/`
+**Outputs:**
+- **Extracted Frames** 📷
+- **Segmented Airbag Images** 🖼️
+- **Annotated Text Files** 📜
 
-## 📌 Future Improvements
-- Optimize model performance with hyperparameter tuning.
-- Deploy as a web app for user-friendly access.
-- Improve annotation formats for better integration with labeling tools.
+---
 
-## 👨‍💻 Author
-Developed by **[Nikhil Bhandari](https://linkedin.com/in/nikhil-bhandari17)** 🚀
+## 📊 Results & Findings
+- **Accurate detection** of airbag deployment frames with minimal false positives.
+- **Automated inference** for crucial airbag behavior metrics.
+- **Scalable & adaptable** for different car models and crash test scenarios.
+
+📩 *For improvements or suggestions, feel free to contribute!*
 
 
 
